@@ -3,6 +3,7 @@ const router = require("express").Router();
 const pets = require("../models/Pet.model");
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 const User = require("../models/User.model");
+const Pets = require("../models/Pet.model");
 
 const likedAnimals = []
 
@@ -24,7 +25,7 @@ router.get('/animalprofile', (req, res) => {
 
 //router to add an animal to the favourited list
 // router.get('/likeButton', (req, res) => {
-//     likedAnimals.push
+//     likedAnimals.push()
 // })
 
 //favourited animals page
@@ -38,6 +39,9 @@ router.get('/animalssearch', (req, res) => {
     res.render('search/animalSearch')
 })
 
+router.get('/AllAnimals', (req, res) => {
+    Pets.find()
+})
 
 
 module.exports = router
