@@ -58,8 +58,12 @@ router.get("/pets/:petsId", (req, res) => {
 //router for the delete button =>
 router.post("/pets/:petsId/delete", (req, res) => {
   console.log(req.params.petsId);
-  Pets.findByIdAndDelete(req.params.petsId).then(() => {
+    Pets.findByIdAndDelete(req.params.petsId)
+        .then(() => {
     res.redirect("/");
-  });
+        })
+        .catch((error) => {
+        console.log("there is an error deleting the pet!===>",error)
+    })
 });
 module.exports = router;
