@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const router = require("express").Router();
 const bcrypt = require('bcryptjs');
-
+const saltRounds = 10
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 const User = require("../models/User.model");
 
@@ -27,6 +27,11 @@ router.post('/createuser', (req, res, next) => {
         return
     }
     bcrypt
+        .genSalt(saltRounds)
+        .then((salt) => {
+            console.log("The salt is ===>", salt)
+            return bcrypt.hash(password,salt)
+        })
         .then((hashedPassword) => {
             return User.create({
                 email: email,
