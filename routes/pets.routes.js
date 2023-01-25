@@ -7,10 +7,14 @@ const Pets = require("../models/Pet.model");
 
 const likedAnimals = [];
 
-//Adoption condition page
+//Dotation Form
+router.get("/donationform", (req, res) => {
+  res.render("donationForm");
+});
 
-router.get("/adoptionConditions", (req, res) => {
-  res.render("adoptionConditions");
+//Contact Form
+router.get("/contactform", (req, res) => {
+  res.render("contactForm");
 });
 
 //animal profile page
@@ -28,42 +32,42 @@ router.get("/favouritedAnimals", isLoggedIn, (req, res) => {
   res.render("favouritedAnimals");
 });
 
-//animalSearch all animals page
+//animalSearch page with search filters and serch button
 router.get("/search/animalssearch", (req, res) => {
   Pets.find()
     .populate("user_id")
     .then((result) => {
       console.log(result);
-      res.render("search/animalsList", result);
+      res.render("search/animalsSearch", result);
     })
-      .catch((error) => {
-        console.log("There is an error!",error)
-    })
+    .catch((error) => {
+      console.log("There is an error!", error);
+    });
 });
 
 //Animal profile one profile ===> this is the route for searching for one animal.
 //The result of the search should be posted on the following page: "/pets/animalProfileResult.hbs"
 router.get("/pets/:petsId", (req, res) => {
   console.log(req.params);
-    Pets.findById(req.params.petsId)
-        .then((result) => {
-            console.log(result);
-            res.render("pets/animalProfileResult", { result });
-        })
-        .catch((error) => {
-        console.log("There is an error",error)
+  Pets.findById(req.params.petsId)
+    .then((result) => {
+      console.log(result);
+      res.render("pets/animalProfileResult", { result });
     })
+    .catch((error) => {
+      console.log("There is an error", error);
+    });
 });
 
 //router for the delete button =>
 router.post("/pets/:petsId/delete", (req, res) => {
   console.log(req.params.petsId);
-    Pets.findByIdAndDelete(req.params.petsId)
-        .then(() => {
-    res.redirect("/");
-        })
-        .catch((error) => {
-        console.log("there is an error deleting the pet!===>",error)
+  Pets.findByIdAndDelete(req.params.petsId)
+    .then(() => {
+      res.redirect("/");
     })
+    .catch((error) => {
+      console.log("there is an error deleting the pet!===>", error);
+    });
 });
 module.exports = router;
