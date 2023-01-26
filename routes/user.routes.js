@@ -44,7 +44,7 @@ router.post("/auth/createuser", (req, res, next) => {
       });
     })
     .then(() => {
-      res.redirect("./pets/loggedUser");
+      res.redirect("/pets/loggedUser");
     })
     .catch((error) => {
       //Check if any of our mongoose validators are not being met
@@ -79,9 +79,9 @@ router.get("/user", isLoggedIn, (req, res) => {
 router.post("/auth/login", (req, res) => {
   console.log("SESSION =====>", req.session);
 
-  const { email, password, username } = req.body;
+  const { email, password } = req.body;
   console.log(req.body);
-  if (!email || !password || !username) {
+  if (!email || !password) {
     res.render("auth/login", {
       errorMessage: "Please enter your email, password and username!",
     });
