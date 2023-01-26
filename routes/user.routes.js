@@ -8,8 +8,8 @@ const User = require("../models/User.model");
 //This is the routes to GET Sign UP / create a new user! :)
 
 router.get("/auth/createuser", isLoggedOut, (req, res) => {
-  data = {userInSession:req.session.currentUser}
-  res.render("auth/createUser",data);
+  data = { userInSession: req.session.currentUser };
+  res.render("auth/createUser", data);
 });
 
 //This is the routes POST Sign UP / create a new user! :)
@@ -75,10 +75,9 @@ router.get("/auth/createuser", isLoggedIn, (req, res) => {
 //this is the post route to login! :)
 
 router.post("/auth/login", (req, res) => {
-  console.log("SESSION =====>", req.session)
-   
+  console.log("SESSION =====>", req.session);
   const { email, password, username } = req.body;
-  console.log(req.body)
+  console.log(req.body);
   if (!email || !password || !username) {
     res.render("auth/login", {
       errorMessage: "Please enter your email, password and username!",
@@ -91,13 +90,11 @@ router.post("/auth/login", (req, res) => {
       if (!user) {
         res.render("auth/login", {
           errorMessage: "user not found! There is no account with this email!",
-        })
+        });
       } else if (bcrypt.compareSync(password, user.password)) {
-        req.session.currentUser = user
-        res.redirect('/loggedUser')
-      }
-      
-      else {
+        req.session.currentUser = user;
+        res.redirect("/pets");
+      } else {
         res.render("auth/login", { errorMessage: "Wrong information!" });
       }
     })
