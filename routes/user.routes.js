@@ -96,7 +96,8 @@ router.post("/auth/login", (req, res) => {
         });
       } else if (bcrypt.compareSync(password, user.password)) {
         console.log(`password confirmed`)
-        req.session.currentUser = user;
+        req.session.currentUser = user.toObject();
+        delete req.session.currentUser.password
         res.redirect("/user");
       } else {
         res.render("auth/login", { errorMessage: "Wrong information!" });
@@ -111,7 +112,7 @@ router.post("/auth/login", (req, res) => {
 router.post("/logout", (req, res, next) => {
   req.session.destroy((error) => {
     if (error) next(error);
-    res.redirect("/login");
+    res.redirect("/");
   });
 });
 

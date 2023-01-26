@@ -6,6 +6,7 @@ const petSchema = new Schema({
     animalName: String,
     animalAge: Number,
     animalGender: String,
+    animalImage: String,
     user_id:[{type: mongoose.Schema.Types.ObjectId, ref:'User'}]
 },
     {

@@ -45,9 +45,16 @@
               <li class="nav-item">
                 <a class="btn btn-outline-secondary  ms-3" href="/auth/createuser" role="button">Sign Up</a>
               </li>
+              <form action="/logout" method="post">
+              <button>Logout</button>
+              </form>
             </ul></div>
         </div>
-        
+        {{#if userInSession}}
+        <p>User logged!</p>
+        {{else}}
+        <p>User not logged!</p>
+        {{/if}}
       </nav>
       
      

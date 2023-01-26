@@ -26,7 +26,9 @@ const projectName = "pets-adoption";
 app.locals.appTitle = `${capitalize(projectName)}`;
 
 app.use((req, res,next) => {
-    console.log(req.session)
+    
+    app.locals.userInSession = req.session.currentUser
+    console.log(app.locals)
     next()
 }
 )
