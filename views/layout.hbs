@@ -51,9 +51,9 @@
             </ul></div>
         </div>
         {{#if userInSession}}
-        <p>User logged!</p>
+        <p>Hello {{userInSession.email}}</p>
         {{else}}
-        <p>User not logged!</p>
+        <p>User is not logged in!</p>
         {{/if}}
       </nav>
       
