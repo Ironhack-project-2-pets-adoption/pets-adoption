@@ -1,0 +1,26 @@
+You can create your account here!
+
+<div id="form">
+  <h2>Create your account!</h2>
+  <form action="/auth/createuser" method="POST">
+<label>
+    Username
+    <input type="text" name="username" placeholder="Username">
+</label>
+
+    <label> Email
+      <input type="email" name="email" placeholder="Email"  />
+    </label>
+ 
+    <label> Password
+      <input type="password" name="password" placeholder="Password" />
+    </label>
+ 
+    <button type="submit">Create account</button>
+ 
+    {{!-- error message will be added here --}}
+    {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
