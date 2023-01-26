@@ -25,8 +25,14 @@ const projectName = "pets-adoption";
 
 app.locals.appTitle = `${capitalize(projectName)}`;
 
+app.use((req, res,next) => {
+    console.log(req.session)
+    next()
+}
+)
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");
+
 app.use("/", indexRoutes);
 
 app.use("/", require("./routes/pets.routes"));
