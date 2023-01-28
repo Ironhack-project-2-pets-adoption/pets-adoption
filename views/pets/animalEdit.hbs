@@ -2,7 +2,7 @@
 
 <h2>Edit the animal profile: {{animalName}}</h2>
 
-<form action="/pets/{{pets._id}}/edit" method="post">
+<form action="/pets/{{_id}}/edit" method="post">
   <label>
     Type:
     <input type="text" name="animalType" value="{{animalType}}" />
@@ -23,5 +23,5 @@
     <input type="text" name="animalSize" value="{{animalSize}}" />
   </label>
 
-  <button>Save changes</button>
+  <button type="submit">Save changes</button>
 </form>
