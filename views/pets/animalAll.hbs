@@ -1,35 +1,34 @@
 {{! this page renders a result of the research }}
 
 <div class="container d-flex justify-content-center align-items-center">
-
-{{!-- Page Title --}}
- <div class="container">
+  {{! Page Title }}
+  <div class="container">
     <div class="row">
       <h1>Here you can see all our animals</h1>
       <hr />
     </div>
-{{!--All animals --}}
-  <div class="row">
-    {{#each result}}
+    {{!All animals }}
+    <div class="row">
+      {{#each result}}
 
-      <div
-        class="card p-3 m-2 d-flex justify-content-center align-items-center"
-        style="width: 400px"
-      >
-        <img
-          class="img-fluid rounded mb-3"
-          style=" width: 400px; 
+        <div
+          class="card p-3 m-2 d-flex justify-content-center align-items-center"
+          style="width: 400px"
+        >
+          <img
+            class="img-fluid rounded mb-3"
+            style=" width: 400px; 
                   height: 250px;"
-          src={{this.animalImage}}
-        />
-        <h5>{{this.animalName}}</h5>
-        <form action="/pets/animalProfile/{{_id}}" method="get">
-          <button class="btn btn-outline-secondary ms-3">
-            Check animal profile</button>
-        </form>
+            src={{this.animalImage}}
+          />
+          <h5>{{this.animalName}}</h5>
+          <form action="/pets/animalProfile/{{_id}}" method="get">
+            <button class="btn btn-outline-secondary ms-3">
+              Check animal profile</button>
+          </form>
 
-      </div>
-    {{/each}}
+        </div>
+      {{/each}}
+    </div>
   </div>
-
 </div>

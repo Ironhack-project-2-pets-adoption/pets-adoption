@@ -110,13 +110,17 @@ router.post("/pets/:petsId/edit", (req, res, next) => {
   const { animalName, animalType, animalGender, animalAge, animalSize } =
     req.body;
 
-  Pets.findByIdAndUpdate(req.params.petsId,
-    { animalName:animalName, animalType:animalType, animalGender:animalGender, animalAge:animalAge, animalSize:animalSize }
-  )
-    
+  Pets.findByIdAndUpdate(req.params.petsId, {
+    animalName: animalName,
+    animalType: animalType,
+    animalGender: animalGender,
+    animalAge: animalAge,
+    animalSize: animalSize,
+  })
+
     .then((result) => {
-      console.log('THE PET IS EDITED')
-      res.render('pets/animalEdit',result)
+      console.log("THE PET IS EDITED");
+      res.render("pets/animalAll", result);
     })
 
     .catch((error) => next(error));
