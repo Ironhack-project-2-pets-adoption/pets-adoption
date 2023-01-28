@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
   <head>
@@ -39,27 +40,45 @@
               <li class="nav-item">
                 <a class="nav-link ms-3" href="/contactform">Contacts</a>
               </li>
+
+ {{#if userInSession}}
+              {{!-- user in session  start --}}
+
+              <li class="nav-item"> 
+                <p class="ms-5 mt-2 text-success font-weight-bold ">  Hello {{userInSession.username}} ! </p>  
+                </li>
+              
+              <li class="nav-item">
+                <a class="btn btn-outline-secondary  ms-3" href="/auth/createuser" role="button">My Space</a>
+              </li>
+              <li class="nav-item">
+             <form action="/logout" method="post" class="btn btn-outline-secondary  ms-3">
+              Logout
+              </form>
+              </li>
+              {{!-- user in session end--}}
+
+
+ {{else}}
+              {{!-- user in not logged in start--}}
                <li class="nav-item">
-                <a class="btn btn-outline-secondary  ms-3" href="/auth/login" role="button">Log In</a>
+                <a class="btn btn-outline-secondary  ms-5" href="/auth/login" role="button">Log In</a>
               </li>
               <li class="nav-item">
                 <a class="btn btn-outline-secondary  ms-3" href="/auth/createuser" role="button">Sign Up</a>
               </li>
-              <form action="/logout" method="post">
-              <button>Logout</button>
-              </form>
+              {{!-- user in not logged in end--}}
+ {{/if}}
             </ul></div>
         </div>
-        {{#if userInSession}}
-        <p>Hello {{userInSession.email}}</p>
-        {{else}}
-        <p>User is not logged in!</p>
-        {{/if}}
+       
+    
+       
       </nav>
       
      
       <!-- content -->
-      <div class="container">
+      <div class="container ">
         {{{body}}}
 
       </div>
