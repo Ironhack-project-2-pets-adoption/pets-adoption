@@ -1,29 +1,62 @@
-<h1>Here is animal profile</h1>
+{{! this page renders a one animal profile }}
 
-<div class="container">  
-      <div id="allPets" class="container">
-    <img class="imgPets" src={{animalImage}} />
-    <div id="description">
-<h5 > {{animalName}} </h5>
+<div class="container d-flex justify-content-center align-items-center"> 
+
+    {{!-- Page Title --}}
+  <div class="container">
+
+    
+    <div class="row">
+      <h1>Here is animal profile</h1>
+      <hr />
+    </div>
 
 
+{{!-One animal profile --}}
+    <div class="row"> 
+        <div class="col"> 
+              <img class="img-fluid rounded mb-3" src={{animalImage}} />
+        </div>
+              
+
+         <div class="col">  
+      <h1>{{this.animalName}}</h1>
+      <h3>{{this.animalType}}</h3>
+      <h3>{{this.animalGender}}</h3>
+      <h3>{{this.animalAge}}</h3>
+      <h3>{{this.animalSize}}</h3>
+
+{{!-Buttons --}}
 <div class="d-block">
     <form action="/pets/{{_id}}/delete" method="post"  >
-        <button class="btn btn-outline-danger  ms-3" > Delete </button>
+        <button class="btn btn-outline-danger  ms-3" > Delete animal profile       </button>
     </form>
 
 
 <form action="/pets/{{_id}}/edit" method="post"> 
-    <button class="btn btn-outline-secondary  ms-3" > Edit </button>  </form>
+    <button class="btn btn-outline-secondary  ms-3" > Edit animal profile  </button>  </form>
 
 
 
-
-<button class="btn btn-outline-secondary  ms-3" > Favourite </button>
+<form action="">
+    <button class="btn btn-outline-secondary  ms-3" > Favourite </button>
  </div>
+</form>
+
+<a href="/pets/animalall" class="btn btn-outline-secondary  ms-3" > Back to Animals list</a>
+
+         </div>
+
+    </div>
 
 
- </div>
+  </div>
+
+
+
+</div>
+
+
 
 
 

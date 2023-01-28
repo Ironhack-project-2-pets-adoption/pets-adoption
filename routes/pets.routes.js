@@ -54,6 +54,11 @@ router.get("/pets/animalprofile/:id", (req, res) => {
     });
 });
 
+//redirect from animal profile page to the list of animals
+router.get("/pets/animalll", (req, res) => {
+  res.render("pets/animalAll");
+});
+
 //router to add an animal to the favourited list
 // router.get('/likeButton', (req, res) => {
 //     likedAnimals.push(ObjectId)
