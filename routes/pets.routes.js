@@ -79,19 +79,12 @@ router.get("/pets/:petsId", (req, res) => {
 });
 
 //router for the delete button =>
-router.post("/pets/animalProfile/:id/delete", (req, res) => {
-  console.log(req.params.petsId);
-  Pets.findByIdAndDelete(req.params.petsId);
+router.post("/pets/:petsId/delete", (req, res, next) => {
+  const { petsId } = req.params;
 
-  res.render("pets/animalall", { result }).then((result) => {
-    console.log(result);
-
-    res.redirect("pets/animalall", { result })
-    
-    .catch((error) => {
-      console.log("there is an error deleting the pet!===>", error);
-    });
-  });
+  Pets.findByIdAndDelete(petsId)
+    .then(() => res.redirect("/pets/animalAll"))
+    .catch((error) => next(error));
 });
 
 module.exports = router;
