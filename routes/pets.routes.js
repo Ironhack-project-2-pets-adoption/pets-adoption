@@ -115,10 +115,11 @@ router.post("/pets/:petsId/edit", (req, res, next) => {
     { new: true }
   )
     
-    .then((result) => {
+    .then(() => {
       console.log('THE PET IS EDITED')
       // res.render('pets/animalEdit',result)
-      res.redirect(`/pets/${req.params.petsId}/edit`)
+      // res.redirect(`/pets/${req.params.petsId}/edit`)
+      res.redirect('/pets/animalAll')
     })
 
     .catch((error) => {
