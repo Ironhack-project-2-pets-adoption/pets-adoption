@@ -18,6 +18,11 @@ router.get("/contactform", (req, res) => {
   res.render("contactForm");
 });
 
+//mySpace route:
+router.get('/mySpace', (req, res) => {
+  res.render('mySpace');
+})
+
 // Adopt : animalSearch page with search filters and serch button
 router.get("/search/animalsfilters", (req, res) => {
   Pets.find()
