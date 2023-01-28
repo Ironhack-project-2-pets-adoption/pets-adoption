@@ -1,0 +1,15 @@
+{{! this page renders a result of the research }}
+
+{{#each pets}}
+  <div id="allPets" class="container">
+    <img class="imgPets" src={{this.animalImage}} />
+    <div id="description">
+      <h1>{{this.animalName}}</h1>
+      <h3>{{this.animalType}}</h3>
+      <h3>{{this.animalGender}}</h3>
+      <h3>{{this.animalAge}}</h3>
+      <h3>{{this.animalSize}}</h3>
+
+    </div>
+  </div>
+{{/each}}

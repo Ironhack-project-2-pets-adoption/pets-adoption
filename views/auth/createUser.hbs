@@ -1,26 +1,66 @@
-You can create your account here!
+<div
+  class="container h-100 d-flex justify-content-center align-items-start mt-5"
+>
+  <div class="row">
 
-<div id="form">
-  <h2>Create your account!</h2>
-  <form action="/auth/createuser" method="POST">
-<label>
-    Username
-    <input type="text" name="username" placeholder="Username">
-</label>
+    {{! col center  }}
+    <div class="col">
+      <h1 class="mb-3">
+        Create your account
+        <hr />
+      </h1>
 
-    <label> Email
-      <input type="email" name="email" placeholder="Email"  />
-    </label>
- 
-    <label> Password
-      <input type="password" name="password" placeholder="Password" />
-    </label>
- 
-    <button type="submit">Create account</button>
- 
-    {{!-- error message will be added here --}}
-    {{#if errorMessage}}
-    <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+      <!--Form -->
+
+      <form action="/auth/createuser" method="POST" style="width: auto">
+        <!--Name input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example1"> Username </label>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            class="form-control"
+          />
+        </div>
+
+        <!--Email input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example1">
+            Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            class="form-control"
+          />
+        </div>
+
+        <!--Password input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example2">
+            Password
+          </label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            class="form-control"
+          />
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4 mt- 4">
+          Create account
+        </button>
+
+        {{! error message will be added here }}
+        {{#if errorMessage}}
+          <p class="error">{{errorMessage}}</p>
+        {{/if}}
+
+      </form>
+    </div>
+  </div>
+
 </div>
