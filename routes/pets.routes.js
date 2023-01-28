@@ -7,32 +7,17 @@ const Pets = require("../models/Pet.model");
 
 const likedAnimals = [];
 
-//Dotation Form
+//Dotation Form:
 router.get("/donationform", (req, res) => {
   res.render("donationForm");
 });
 
-//Contact Form
+//Contact Form:
 router.get("/contactform", (req, res) => {
   res.render("contactForm");
 });
 
-//animal profile page
-router.get("/animalprofile", (req, res) => {
-  res.render("animalProfile");
-});
-
-//router to add an animal to the favourited list
-// router.get('/likeButton', (req, res) => {
-//     likedAnimals.push(ObjectId)
-// })
-
-//favourited animals page
-router.get("/favouritedAnimals", isLoggedIn, (req, res) => {
-  res.render("favouritedAnimals");
-});
-
-//animalSearch page with search filters and serch button
+// Adopt : animalSearch page with search filters and serch button
 router.get("/search/animalsfilters", (req, res) => {
   Pets.find()
     .populate("user_id")
@@ -43,6 +28,26 @@ router.get("/search/animalsfilters", (req, res) => {
     .catch((error) => {
       console.log("There is an error!", error);
     });
+});
+
+//display All Animals
+router.get("/pets/animalAll", (req, res) => {
+  res.render("pets/animalall");
+});
+
+//animal profile page
+router.get("/pets/animalprofile", (req, res) => {
+  res.render("pets/animalProfile");
+});
+
+//router to add an animal to the favourited list
+// router.get('/likeButton', (req, res) => {
+//     likedAnimals.push(ObjectId)
+// })
+
+//favourited animals page
+router.get("/favouritedAnimals", isLoggedIn, (req, res) => {
+  res.render("favouritedAnimals");
 });
 
 //Animal profile one profile ===> this is the route for searching for one animal.
@@ -69,11 +74,6 @@ router.post("/pets/:petsId/delete", (req, res) => {
     .catch((error) => {
       console.log("there is an error deleting the pet!===>", error);
     });
-});
-
-//display All Alimanls
-router.get("/animalAll", (req, res) => {
-  res.render("animalAll");
 });
 
 module.exports = router;
