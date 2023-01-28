@@ -111,15 +111,19 @@ router.post("/pets/:petsId/edit", (req, res, next) => {
     req.body;
 
   Pets.findByIdAndUpdate(req.params.petsId,
-    { animalName:animalName, animalType:animalType, animalGender:animalGender, animalAge:animalAge, animalSize:animalSize }
+    { animalName: animalName, animalType: animalType, animalGender: animalGender, animalAge: animalAge, animalSize: animalSize }, 
+    { new: true }
   )
     
     .then((result) => {
       console.log('THE PET IS EDITED')
-      res.render('pets/animalEdit',result)
+      // res.render('pets/animalEdit',result)
+      res.redirect(`/pets/${req.params.petsId}/edit`)
     })
 
-    .catch((error) => next(error));
+    .catch((error) => {
+      console.log('There is an errorr',error)
+    })
 });
 
 module.exports = router;
