@@ -60,7 +60,7 @@ router.get("/pets/animalprofile/:id", (req, res) => {
 });
 
 //redirect from animal profile page to the list of animals
-router.get("/pets/animalll", (req, res) => {
+router.get("/pets/animall", (req, res) => {
   res.render("pets/animalAll");
 });
 
