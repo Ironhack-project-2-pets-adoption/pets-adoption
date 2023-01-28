@@ -1,3 +1,27 @@
 <h1>Here is animal profile</h1>
 
-{{animalName}}
+<div class="container">  
+      <div id="allPets" class="container">
+    <img class="imgPets" src={{animalImage}} />
+    <div id="description">
+<h5 > {{animalName}} </h5>
+
+
+<div class="d-block">
+    <form action="/pets/animalProfile/{{_id}}/delete" method="post"  >
+        <button class="btn btn-outline-danger  ms-3" > Delete </button>
+    </form>
+
+<button class="btn btn-outline-secondary  ms-3" > Edit </button>
+<button class="btn btn-outline-secondary  ms-3" > Favourite </button>
+ </div>
+
+
+ </div>
+
+
+
+
+
+
+

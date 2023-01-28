@@ -34,25 +34,24 @@ router.get("/search/animalsfilters", (req, res) => {
 //display All Animals
 router.get("/pets/animalall", (req, res) => {
   Pets.find()
-    .populate('user_id')
+    .populate("user_id")
     .then((result) => {
-      res.render("pets/animalall",{result});
+      res.render("pets/animalall", { result });
     })
     .catch((error) => {
-    console.log('there is an error', error)
-  })
- 
+      console.log("there is an error", error);
+    });
 });
 
 //animal profile page
 router.get("/pets/animalprofile/:id", (req, res) => {
   Pets.findById(req.params.id)
-    .then(result => {
-      res.render("pets/animalProfile",result);
-  })
+    .then((result) => {
+      res.render("pets/animalProfile", result);
+    })
     .catch((error) => {
-   console.log("error",error)
- })
+      console.log("error", error);
+    });
 });
 
 //router to add an animal to the favourited list
@@ -80,15 +79,19 @@ router.get("/pets/:petsId", (req, res) => {
 });
 
 //router for the delete button =>
-router.post("/pets/:petsId/delete", (req, res) => {
+router.post("/pets/animalProfile/:id/delete", (req, res) => {
   console.log(req.params.petsId);
-  Pets.findByIdAndDelete(req.params.petsId)
-    .then(() => {
-      res.redirect("/");
-    })
+  Pets.findByIdAndDelete(req.params.petsId);
+
+  res.render("pets/animalall", { result }).then((result) => {
+    console.log(result);
+
+    res.redirect("pets/animalall", { result })
+    
     .catch((error) => {
       console.log("there is an error deleting the pet!===>", error);
     });
+  });
 });
 
 module.exports = router;
