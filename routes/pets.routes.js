@@ -89,28 +89,31 @@ router.post("/pets/:petsId/delete", (req, res, next) => {
 
 // GET route to display the form to update a specific animal
 router.get("/pets/:petsId/edit", (req, res, next) => {
-  const { petsId } = req.params;
+  // const { petsId } = req.params;
 
-  Pets.findById(petsId)
-    .then((petsToEdit) => {
+  Pets.findById(req.params.petsId)
+    .then((result) => {
       // console.log(petsToEdit);
-      res.render("pets/animalEdit.hbs", { pets: petsToEdit });
+      res.render("pets/animalEdit", result);
     })
     .catch((error) => next(error));
 });
 
 // POST route to actually make updates on a specific animal profile
 router.post("/pets/:petsId/edit", (req, res, next) => {
-  const { petsId } = req.params;
+  // const { petsId } = req.params;
   const { animalName, animalType, animalGender, animalAge, animalSize } =
     req.body;
 
-  Pets.findByIdAndUpdate(
-    petsId,
-    { animalName, animalType, animalGender, animalAge, animalSize },
-    { new: true }
+  Pets.findByIdAndUpdate(req.params.petsId,
+    { animalName:animalName, animalType:animalType, animalGender:animalGender, animalAge:animalAge, animalSize:animalSize }
   )
-    .then((updatedPets) => res.redirect(`/pets/${updatedPets.id}`))
+    
+    .then((result) => {
+      console.log('THE PET IS EDITED')
+      res.render('pets/animalEdit',result)
+    })
+
     .catch((error) => next(error));
 });
 
