@@ -1,0 +1,27 @@
+{{! views/pets/animalEdit.hbs }}
+
+<h2>Edit the animal profile: {{animalName}}</h2>
+
+<form action="/pets/{{pets._id}}/edit" method="post">
+  <label>
+    Type:
+    <input type="text" name="animalType" value="{{animalType}}" />
+  </label>
+
+  <label>
+    Gender:
+    <input type="text" name="animalGender" value="{{animalGender}}" />
+  </label>
+
+  <label>
+    Age:
+    <input type="number" name="animalAge" value="{{animalAge}}" />
+  </label>
+
+  <label>
+    Size:
+    <input type="text" name="animalSize" value="{{animalSize}}" />
+  </label>
+
+  <button>Save changes</button>
+</form>

@@ -78,12 +78,39 @@ router.get("/pets/:petsId", (req, res) => {
     });
 });
 
-//router for the delete button =>
+//router for the delete one animal button =>
 router.post("/pets/:petsId/delete", (req, res, next) => {
   const { petsId } = req.params;
 
   Pets.findByIdAndDelete(petsId)
     .then(() => res.redirect("/pets/animalAll"))
+    .catch((error) => next(error));
+});
+
+// GET route to display the form to update a specific animal
+router.get("/pets/:petsId/edit", (req, res, next) => {
+  const { petsId } = req.params;
+
+  Pets.findById(petsId)
+    .then((petsToEdit) => {
+      // console.log(petsToEdit);
+      res.render("pets/animalEdit.hbs", { pets: petsToEdit });
+    })
+    .catch((error) => next(error));
+});
+
+// POST route to actually make updates on a specific animal profile
+router.post("/pets/:petsId/edit", (req, res, next) => {
+  const { petsId } = req.params;
+  const { animalName, animalType, animalGender, animalAge, animalSize } =
+    req.body;
+
+  Pets.findByIdAndUpdate(
+    petsId,
+    { animalName, animalType, animalGender, animalAge, animalSize },
+    { new: true }
+  )
+    .then((updatedPets) => res.redirect(`/pets/${updatedPets.id}`))
     .catch((error) => next(error));
 });
 
