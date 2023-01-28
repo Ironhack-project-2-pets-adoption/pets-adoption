@@ -8,6 +8,11 @@ const userSchema = new Schema(
       trim: true,
       required: false,
       unique: true
+      
+    },
+    isAdmin: {
+      type: Boolean,
+      default:false
     },
     email: {
       type: String,
