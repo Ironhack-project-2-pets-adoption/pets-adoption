@@ -4,6 +4,7 @@ const router = require("express").Router();
 const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
 const User = require("../models/User.model");
 const Pets = require("../models/Pet.model");
+const { findById } = require("../models/Pet.model");
 
 const likedAnimals = [];
 
@@ -31,8 +32,16 @@ router.get("/search/animalsfilters", (req, res) => {
 });
 
 //display All Animals
-router.get("/pets/animalAll", (req, res) => {
-  res.render("pets/animalall");
+router.get("/pets/animalall", (req, res) => {
+  Pets.find()
+    .populate('user_id')
+    .then((result) => {
+      res.render("pets/animalall",{result});
+    })
+    .catch((error) => {
+    console.log('there is an error', error)
+  })
+ 
 });
 
 //animal profile page
@@ -57,7 +66,7 @@ router.get("/pets/:petsId", (req, res) => {
   Pets.findById(req.params.petsId)
     .then((result) => {
       console.log(result);
-      res.render("pets/animalAll", { result });
+      res.render("pets/animalProfile", { result });
     })
     .catch((error) => {
       console.log("There is an error", error);
