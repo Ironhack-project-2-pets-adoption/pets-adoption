@@ -33,12 +33,12 @@ router.get("/favouritedAnimals", isLoggedIn, (req, res) => {
 });
 
 //animalSearch page with search filters and serch button
-router.get("/search/animalssearch", (req, res) => {
+router.get("/search/animalsfilters", (req, res) => {
   Pets.find()
     .populate("user_id")
     .then((result) => {
       console.log(result);
-      res.render("search/animalsSearch", result);
+      res.render("search/animalsFilters", result);
     })
     .catch((error) => {
       console.log("There is an error!", error);
@@ -52,7 +52,7 @@ router.get("/pets/:petsId", (req, res) => {
   Pets.findById(req.params.petsId)
     .then((result) => {
       console.log(result);
-      res.render("pets/animalProfileResult", { result });
+      res.render("pets/animalAll", { result });
     })
     .catch((error) => {
       console.log("There is an error", error);
@@ -70,4 +70,10 @@ router.post("/pets/:petsId/delete", (req, res) => {
       console.log("there is an error deleting the pet!===>", error);
     });
 });
+
+//display All Alimanls
+router.get("/animalAll", (req, res) => {
+  res.render("animalAll");
+});
+
 module.exports = router;
