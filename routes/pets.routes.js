@@ -45,8 +45,14 @@ router.get("/pets/animalall", (req, res) => {
 });
 
 //animal profile page
-router.get("/pets/animalprofile", (req, res) => {
-  res.render("pets/animalProfile");
+router.get("/pets/animalprofile/:id", (req, res) => {
+  Pets.findById(req.params.id)
+    .then(result => {
+      res.render("pets/animalProfile",result);
+  })
+    .catch((error) => {
+   console.log("error",error)
+ })
 });
 
 //router to add an animal to the favourited list
