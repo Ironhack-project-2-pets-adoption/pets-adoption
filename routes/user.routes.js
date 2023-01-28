@@ -98,7 +98,7 @@ router.post("/auth/login", (req, res) => {
         console.log(`password confirmed`)
         req.session.currentUser = user.toObject();
         delete req.session.currentUser.password
-        res.redirect("/user");
+        res.redirect("/");
       } else {
         res.render("auth/login", { errorMessage: "Wrong information!" });
       }
