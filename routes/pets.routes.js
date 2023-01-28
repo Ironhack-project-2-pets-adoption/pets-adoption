@@ -4,7 +4,7 @@ const router = require("express").Router();
 const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
 const User = require("../models/User.model");
 const Pets = require("../models/Pet.model");
-const { findById } = require("../models/Pet.model");
+
 
 const likedAnimals = [];
 
@@ -19,9 +19,13 @@ router.get("/contactform", (req, res) => {
 });
 
 //mySpace route:
-router.get('/mySpace', (req, res) => {
-  res.render('mySpace');
-})
+router.get("/mySpace", (req, res) => {
+  res.render("mySpace");
+});
+
+router.get("/loggedUser", (req, res) => {
+  res.render("pets/loggedUser");
+});
 
 // Adopt : animalSearch page with search filters and serch button
 router.get("/search/animalsfilters", (req, res) => {
@@ -89,13 +93,26 @@ router.get("/pets/:petsId", (req, res) => {
 });
 
 //router for the delete one animal button =>
+// router.post("/pets/:petsId/delete", (req, res, next) => {
+//   const { petsId } = req.params;
+
+//   Pets.findByIdAndDelete(petsId)
+//     .then(() => res.redirect("/pets/animalAll"))
+//     .catch((error) => next(error));
+// });
+
 router.post("/pets/:petsId/delete", (req, res, next) => {
   const { petsId } = req.params;
-
-  Pets.findByIdAndDelete(petsId)
-    .then(() => res.redirect("/pets/animalAll"))
-    .catch((error) => next(error));
+  if (!User.isAdmin === false) {
+    Pets.findByIdAndDelete(petsId)
+      .then(() => res.redirect("/pets/animalAll"))
+      
+  } else {
+    console.log('errrorr<===')
+    res.render('pets/loggedUser')
+  }
 });
+
 
 // GET route to display the form to update a specific animal
 router.get("/pets/:petsId/edit", (req, res, next) => {
@@ -115,19 +132,23 @@ router.post("/pets/:petsId/edit", (req, res, next) => {
   const { animalName, animalType, animalGender, animalAge, animalSize } =
     req.body;
 
-  Pets.findByIdAndUpdate(req.params.petsId,
-    { animalName:animalName, animalType:animalType, animalGender:animalGender, animalAge:animalAge, animalSize:animalSize }
-  )
-    
+  Pets.findByIdAndUpdate(req.params.petsId, {
+    animalName: animalName,
+    animalType: animalType,
+    animalGender: animalGender,
+    animalAge: animalAge,
+    animalSize: animalSize,
+  })
+
     .then(() => {
-      console.log('THE PET IS EDITED')
+      console.log("THE PET IS EDITED");
       // res.render('pets/animalEdit',result)
-      res.redirect(`/pets/animalAll`)
+      res.redirect(`/pets/animalAll`);
     })
 
     .catch((error) => {
-      console.log('There is an errorr',error)
-    })
+      console.log("There is an errorr", error);
+    });
 });
 
 module.exports = router;
