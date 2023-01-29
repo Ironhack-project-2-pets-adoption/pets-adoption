@@ -1,58 +1,82 @@
 {{! this page renders a one animal profile }}
 
-<div class="container d-flex justify-content-center align-items-center"> 
+<div class="container d-flex justify-content-center align-items-center">
 
-    {{!-- Page Title --}}
   <div class="container">
-
-    
+    {{! Page Title }}
     <div class="row">
-      <h1>Here is animal profile</h1>
+      <h1>Animal profile</h1>
+
       <hr />
     </div>
 
+    {{!One animal profile }}
+    <div class="row">
 
-{{!-One animal profile --}}
-    <div class="row"> 
-        <div class="col"> 
-              <img class="img-fluid rounded mb-3"   style=" width: 600px; 
-                  height: 450px;" src={{animalImage}} />
+      {{! img col }}
+      <div class="col">
+        <img
+          class="img-fluid rounded mb-3"
+          style=" width: 600px; 
+                  height: 450px;"
+          src={{animalImage}}
+        />
+      </div>
+
+      {{! description col }}
+      <div class="col">
+
+        {{!Buttons row}}
+        <div>
+
+          <ul class="list-inline">
+
+            <li class="list-inline-item">
+              <form action="/pets/{{_id}}/delete" method="post">
+                <button class="btn btn-outline-danger ms-1">
+                  Delete profile
+                </button>
+              </form>
+            </li>
+
+            <li class="list-inline-item">
+              <form action="/pets/{{_id}}/edit" method="get">
+                <button class="btn btn-outline-success ms-1">
+                  Edit profile
+                </button>
+              </form>
+            </li>
+
+            <li class="list-inline-item">
+              <form action="/pets/{{_id}}/like">
+                <button class="btn btn-outline-primary ms-1">
+                  Favourite
+                </button>
+              </form>
+            </li>
+
+            <li class="list-inline-item">
+              <button
+                class="btn btn-outline-secondary ms-1"
+                href="/pets/animalall"
+              >
+                Back to Animals list
+              </button>
+            </li>
+
+          </ul>
+
         </div>
-              
 
-         <div class="col">  
-      <h1>{{this.animalName}}</h1>
-      <h3>{{this.animalType}}</h3>
-      <h3>{{this.animalGender}}</h3>
-      <h3>{{this.animalAge}}</h3>
-      <h3>{{this.animalSize}}</h3>
+        <div class="row">
+          <p><u>Name:</u></p><h1>{{this.animalName}}</h1>
+          <p><u>Type:</u></p><h3>{{this.animalType}}</h3>
+          <p><u>Gender:</u></p><h3>{{this.animalGender}}</h3>
+          <p><u>Age:</u></p><h3>{{this.animalAge}}</h3>
+          <p><u>Size:</u></p><h3>{{this.animalSize}}</h3>
+        </div>
 
-{{!-Buttons --}}
-<div class="d-block">
-    <form action="/pets/{{_id}}/delete" method="post"  >
-        <button class="btn btn-outline-danger  ms-3" > Delete animal profile       </button>
-    </form>
-
-
-<form action="/pets/{{_id}}/edit" method="get"> 
-    <button class="btn btn-outline-secondary  ms-3" > Edit animal profile  </button>  </form>
-
-
-
-<form action="">
-    <button class="btn btn-outline-secondary  ms-3" > Favourite </button>
- </div>
-</form>
-
-<a href="/pets/animalall" class="btn btn-outline-secondary  ms-3" > Back to Animals list</a>
-
-         </div>
-
+      </div>
     </div>
-
-
   </div>
-
-
-
 </div>
