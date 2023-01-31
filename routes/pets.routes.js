@@ -89,15 +89,41 @@ router.get("/pets/:petsId", (req, res) => {
 });
 
 //router for the CREATE one animal GET =>
-router.get("/pets/animalCreate", (req, res) => res.render("pets/animalCreate"));
+router.get("/pets/animalCreate", (req, res) => {
+  User.find().then((result) => {
+    console.log("CREATE ===>", result);
+    res.render("pets/animalCreate", result);
+  });
+});
 
 //router for the CREATE one animal  POST=>
 router.post("/pets/animalCreate", (req, res, next) => {
-  const { petsId } = req.params;
+  console.log(req.body);
+  const {
+    animalType,
+    animalSize,
+    animalName,
+    animalAge,
+    animalGender,
+    animalImage,
+    user_id,
+  } = req.body;
 
-  Pets.insert(petsId)
-    .then(() => res.redirect("/pets/animalCreate"))
-    .catch((error) => next(error));
+  Pets.create({
+    animalType: animalType,
+    animalSize: animalSize,
+    animalName: animalName,
+    animalAge: animalAge,
+    animalGender: animalGender,
+    animalImage: animalImage,
+    user_id: user_id,
+  });
+res.redirect('/pets/animallAll')
+  // const { petsId } = req.params;
+
+  // Pets.insert(petsId)
+  //   .then(() => res.redirect("/pets/animalCreate"))
+  //   .catch((error) => next(error));
 });
 
 //router for the DELETE one animal button =>
