@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
 const router = require("express").Router();
 
-const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
+const {
+  isLoggedIn,
+  isLoggedOut,
+  isAdmin,
+} = require("../middleware/route-guard.js");
 const User = require("../models/User.model");
 const Pets = require("../models/Pet.model");
-
 
 const likedAnimals = [];
 
@@ -69,9 +72,19 @@ router.get("/pets/animall", (req, res) => {
 });
 
 //router to add an animal to the favourited list
-// router.get('/likeButton', (req, res) => {
-//     likedAnimals.push(ObjectId)
-// })
+router.post("/pets/:petsId/likeButton", isLoggedIn, (req, res) => {
+  let likedPet = req.params.petsId;
+  const { favouriteAnimal } = req.body;
+  User.findByIdAndUpdate(req.session.currentUser._id, {$addToSet:{ favouriteAnimal: likedPet }})
+    .then(() => {
+
+      res.redirect('/pets/animalAll')
+
+    })
+    .catch((error) => {
+    console.log("there is an error ===>", error)
+  })
+});
 
 //favourited animals page
 router.get("/favouritedAnimals", isLoggedIn, (req, res) => {
@@ -101,21 +114,15 @@ router.get("/pets/:petsId", (req, res) => {
 //     .catch((error) => next(error));
 // });
 
-router.post("/pets/:petsId/delete", (req, res, next) => {
+router.post("/pets/:petsId/delete", isLoggedIn, isAdmin, (req, res, next) => {
   const { petsId } = req.params;
-  userInSession = req.session.currentUser 
-  let user2 = User.isAdmin
-  
-  if (user2=== true) {
-    Pets.findByIdAndDelete(petsId)
-      .then(() => res.redirect("/pets/animalAll"))
-      
-  } else {
-    console.log('errrorr<===')
-    res.render('pets/loggedUser')
-  }
-});
 
+  Pets.findByIdAndDelete(petsId)
+    .then(() => res.redirect("/pets/animalAll"))
+    .catch((error) => {
+      console.log("error", error);
+    });
+});
 
 // GET route to display the form to update a specific animal
 router.get("/pets/:petsId/edit", (req, res, next) => {

@@ -28,7 +28,7 @@ app.locals.appTitle = `${capitalize(projectName)}`;
 app.use((req, res,next) => {
     
     app.locals.userInSession = req.session.currentUser
-    console.log(app.locals)
+
     next()
 }
 )
