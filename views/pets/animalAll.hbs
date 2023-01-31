@@ -4,9 +4,18 @@
   {{! Page Title }}
   <div class="container">
     <div class="row">
-      <h1>Here you can see all our animals</h1>
+      <div class="col"> <h1>Here you can see all our animals</h1> </div>
+      <div class="col d-flex justify-content-end mt-3 me-3">
+        <form action="/pets/animalcreate" method="get">
+          <button class="btn btn-success ms-1">
+            Add Animal
+          </button>
+        </form>
+      </div>
+
       <hr />
     </div>
+
     {{!All animals }}
     <div class="row">
       {{#each result}}

@@ -19,9 +19,9 @@ router.get("/contactform", (req, res) => {
 });
 
 //mySpace route:
-router.get('/mySpace', (req, res) => {
-  res.render('mySpace');
-})
+router.get("/mySpace", (req, res) => {
+  res.render("mySpace");
+});
 
 // Adopt : animalSearch page with search filters and serch button
 router.get("/search/animalsfilters", (req, res) => {
@@ -60,8 +60,8 @@ router.get("/pets/animalprofile/:id", (req, res) => {
 });
 
 //redirect from animal profile page to the list of animals
-router.get("/pets/animall", (req, res) => {
-  res.render("pets/animalAll");
+router.get("/pets/animalall", (req, res) => {
+  res.render("pets/animalall");
 });
 
 //router to add an animal to the favourited list
@@ -88,7 +88,19 @@ router.get("/pets/:petsId", (req, res) => {
     });
 });
 
-//router for the delete one animal button =>
+//router for the CREATE one animal GET =>
+router.get("/pets/animalCreate", (req, res) => res.render("pets/animalCreate"));
+
+//router for the CREATE one animal  POST=>
+router.post("/pets/animalCreate", (req, res, next) => {
+  const { petsId } = req.params;
+
+  Pets.insert(petsId)
+    .then(() => res.redirect("/pets/animalCreate"))
+    .catch((error) => next(error));
+});
+
+//router for the DELETE one animal button =>
 router.post("/pets/:petsId/delete", (req, res, next) => {
   const { petsId } = req.params;
 
@@ -115,19 +127,23 @@ router.post("/pets/:petsId/edit", (req, res, next) => {
   const { animalName, animalType, animalGender, animalAge, animalSize } =
     req.body;
 
-  Pets.findByIdAndUpdate(req.params.petsId,
-    { animalName:animalName, animalType:animalType, animalGender:animalGender, animalAge:animalAge, animalSize:animalSize }
-  )
-    
+  Pets.findByIdAndUpdate(req.params.petsId, {
+    animalName: animalName,
+    animalType: animalType,
+    animalGender: animalGender,
+    animalAge: animalAge,
+    animalSize: animalSize,
+  })
+
     .then(() => {
-      console.log('THE PET IS EDITED')
+      console.log("THE PET IS EDITED");
       // res.render('pets/animalEdit',result)
-      res.redirect(`/pets/animalAll`)
+      res.redirect(`/pets/animalAll`);
     })
 
     .catch((error) => {
-      console.log('There is an errorr',error)
-    })
+      console.log("There is an errorr", error);
+    });
 });
 
 module.exports = router;
