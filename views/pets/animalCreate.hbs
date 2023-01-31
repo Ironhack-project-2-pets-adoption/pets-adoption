@@ -1,1 +1,191 @@
-<h1>Create new animal Profile</h1>
+{{! this page renders a one animal profile }}
+
+<div class="container d-flex justify-content-center align-items-center">
+
+  <div class="container">
+    {{! Page Title }}
+    <div class="row">
+      <h1>Create a new animal profile</h1>
+      <hr />
+    </div>
+
+    {{!One animal profile }}
+    <div class="row bg-light">
+      {{! img col }}
+      <div class="col card d-flex justify-content-center align-items-center">
+        <label class="form-label" for="customFile">
+          Upload animal picture here</label>
+        <input
+          type="file"
+          class="form-control"
+          id="customFile"
+          style="width: 400px;"
+        />
+
+      </div>
+      {{! description col }}
+      <div class="col">
+
+        {{!animal parameters description row}}
+        <div class="row mt-5 ms-3">
+          {{! Animal Name }}
+          <ul class="list-inline">
+            <li class="list-inline-item" style="width: 150px">
+              <p><u>Animal Name:</u></p>
+            </li>
+            <li class="list-inline-item">
+              <input
+                type="text"
+                class="form-control border border-secondary"
+                id="name"
+                placeholder=""
+                name="name"
+                style="width: 300px"
+              />
+            </li>
+          </ul>
+
+          {{!  Animal Type }}
+          <ul class="list-inline">
+            <li class="list-inline-item" style="width: 150px">
+              <p><u>Animal Type:</u></p>
+            </li>
+            <li class="list-inline-item">
+              <div class="dropdown mb-3">
+                <button
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  style="width: 300px"
+                >
+                  Select Type of Animal
+                </button>
+                <div
+                  class="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton"
+                  style="width: 300px"
+                >
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          {{! Animal Gender}}
+          <ul class="list-inline">
+            <li class="list-inline-item" style="width: 150px">
+              <p><u>Animal Gender:</u></p>
+            </li>
+            <li class="list-inline-item">
+              <div class="dropdown mb-3">
+                <button
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  style="width: 300px"
+                >
+                  Select Gender of Animal
+                </button>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          {{! Animal Age }}
+          <ul class="list-inline">
+            <li class="list-inline-item" style="width: 150px">
+              <p><u>Animal Age:</u></p>
+            </li>
+            <li class="list-inline-item">
+              <div class="dropdown mb-3">
+                <button
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  style="width: 300px"
+                >
+                  Select Age of Animal
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          {{! Animal Size  }}
+          <ul class="list-inline">
+            <li class="list-inline-item" style="width: 150px">
+              <p><u>Animal Size:</u></p>
+            </li>
+            <li class="list-inline-item">
+              <div class="dropdown mb-3">
+                <button
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  style="width: 300px"
+                >
+                  Select Size of Animal
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+          {{! Animal Description }}
+          <ul class="list-inline">
+            <li class="list-inline-item mb-3" style="width: 150px">
+              <p><u>Description:</u></p>
+            </li>
+            <li class="list-inline-item">
+              <textarea
+                type="text"
+                class="form-control border border-secondary"
+                id="description"
+                placeholder=""
+                name="description"
+                style="width: 300px; "
+              ></textarea>
+
+            </li>
+          </ul>
+
+          <form action="/pets/{{_id}}/create" method="POST">
+            <button class="btn btn-success mb-5">
+              Create profile
+            </button>
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

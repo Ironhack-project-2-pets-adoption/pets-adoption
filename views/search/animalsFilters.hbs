@@ -12,7 +12,7 @@
       </h1>
 
       <div class="col mt-5">
-
+        {{!  Animal Type }}
         <div class="dropdown mb-3">
           <label
             class="control-label col-sm-2"
@@ -41,12 +41,14 @@
           </div>
         </div>
 
+        {{! Animal Gender}}
         <div class="dropdown mb-3">
           <label
             class="control-label col-sm-2"
             for="fname"
             style="width: 100px"
-          >Size</label>
+          >Gender</label>
+
           <button
             class="btn btn-outline-secondary dropdown-toggle"
             type="button"
@@ -56,8 +58,9 @@
             aria-expanded="false"
             style="width: 300px"
           >
-            Select Size of Animal
+            Select Gender of Animal
           </button>
+
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">Action</a>
             <a class="dropdown-item" href="#">Another action</a>
@@ -65,6 +68,7 @@
           </div>
         </div>
 
+        {{! Animal Age }}
         <div class="dropdown mb-3">
           <label
             class="control-label col-sm-2"
@@ -89,12 +93,13 @@
           </div>
         </div>
 
+        {{! Animal Size  }}
         <div class="dropdown mb-3">
           <label
             class="control-label col-sm-2"
             for="fname"
             style="width: 100px"
-          >Gender</label>
+          >Size</label>
           <button
             class="btn btn-outline-secondary dropdown-toggle"
             type="button"
@@ -104,7 +109,7 @@
             aria-expanded="false"
             style="width: 300px"
           >
-            Select Gender of Animal
+            Select Size of Animal
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">Action</a>
@@ -113,6 +118,7 @@
           </div>
         </div>
 
+        {{! button Show me animals! }}
         <div class="d-block mt-5">
           <form action="/pets/animalall" method="GET">
             <button class="btn btn-primary" style="width: 400px">
