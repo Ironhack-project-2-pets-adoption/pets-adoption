@@ -103,7 +103,10 @@ router.get("/pets/:petsId", (req, res) => {
 
 router.post("/pets/:petsId/delete", (req, res, next) => {
   const { petsId } = req.params;
-  if (!User.isAdmin === false) {
+  userInSession = req.session.currentUser 
+  let user2 = User.isAdmin
+  
+  if (user2=== true) {
     Pets.findByIdAndDelete(petsId)
       .then(() => res.redirect("/pets/animalAll"))
       

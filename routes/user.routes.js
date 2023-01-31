@@ -44,7 +44,8 @@ router.post("/auth/createuser", (req, res, next) => {
       });
     })
     .then(() => {
-      res.redirect("/pets/loggedUser");
+      // res.redirect("/pets/loggedUser");
+      res.render("/")
     })
     .catch((error) => {
       //Check if any of our mongoose validators are not being met
