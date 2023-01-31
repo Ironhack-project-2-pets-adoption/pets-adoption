@@ -1,0 +1,39 @@
+{{! this page renders favourited animals }}
+
+<div class="container d-flex justify-content-center align-items-center">
+  {{! Page Title }}
+  <div class="container">
+    <div class="row">
+      <div class="col"> <h1>My favourited animals</h1> </div>
+      <div class="col d-flex justify-content-end mt-3 me-3">
+
+      </div>
+
+      <hr />
+    </div>
+
+    {{!Favourited animals }}
+    <div class="row">
+      {{#each result}}
+
+        <div
+          class="card p-3 m-2 d-flex justify-content-center align-items-center"
+          style="width: 400px"
+        >
+          <img
+            class="img-fluid rounded mb-3"
+            style=" width: 400px; 
+                  height: 250px;"
+            src={{this.animalImage}}
+          />
+          <h5>{{this.animalName}}</h5>
+          <form action="/pets/animalProfile/{{_id}}" method="get">
+            <button class="btn btn-outline-secondary ms-3">
+              Check animal profile</button>
+          </form>
+
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

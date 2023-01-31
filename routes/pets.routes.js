@@ -70,8 +70,8 @@ router.get("/pets/animalall", (req, res) => {
 // })
 
 //favourited animals page
-router.get("/favouritedAnimals", isLoggedIn, (req, res) => {
-  res.render("favouritedAnimals");
+router.get("/favouritedanimals", isLoggedIn, (req, res) => {
+  res.render("favouritedanimals");
 });
 
 //router for the CREATE one animal GET =>
