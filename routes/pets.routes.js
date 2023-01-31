@@ -74,6 +74,11 @@ router.get("/favouritedAnimals", isLoggedIn, (req, res) => {
   res.render("favouritedAnimals");
 });
 
+//router for the CREATE one animal GET =>
+router.get("/pets/animalCreate", isLoggedIn, (req, res) => {
+  res.render("pets/animalCreate");
+});
+
 //Animal profile one profile ===> this is the route for searching for one animal.
 //The result of the search should be posted on the following page: "/pets/animalProfileResult.hbs"
 router.get("/pets/:petsId", (req, res) => {
@@ -86,18 +91,6 @@ router.get("/pets/:petsId", (req, res) => {
     .catch((error) => {
       console.log("There is an error", error);
     });
-});
-
-//router for the CREATE one animal GET =>
-router.get("/pets/animalCreate", (req, res) => res.render("pets/animalCreate"));
-
-//router for the CREATE one animal  POST=>
-router.post("/pets/animalCreate", (req, res, next) => {
-  const { petsId } = req.params;
-
-  Pets.insert(petsId)
-    .then(() => res.redirect("/pets/animalCreate"))
-    .catch((error) => next(error));
 });
 
 //router for the DELETE one animal button =>
