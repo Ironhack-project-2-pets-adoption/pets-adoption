@@ -36,41 +36,41 @@
           <ul class="list-inline">
 
             {{! if admin in session }}
-            {{#if adminInSession}}
+            {{!-- {{#if adminInSession}} --}}
 
-              <li class="list-inline-item">
-                <form action="/pets/{{_id}}/edit" method="get">
-                  <button class="btn btn-success ms-1">
-                    Edit profile
-                  </button>
-                </form>
-              </li>
+            <li class="list-inline-item">
+              <form action="/pets/{{_id}}/edit" method="get">
+                <button class="btn btn-success ms-1">
+                  Edit profile
+                </button>
+              </form>
+            </li>
 
-              <li class="list-inline-item">
-                <form action="/pets/{{_id}}/delete" method="post">
-                  <button class="btn btn-danger ms-1">
-                    Delete profile
-                  </button>
-                </form>
-              </li>
+            <li class="list-inline-item">
+              <form action="/pets/{{_id}}/delete" method="post">
+                <button class="btn btn-danger ms-1">
+                  Delete profile
+                </button>
+              </form>
+            </li>
 
-              {{! if user in session }}
-            {{else}}
-              <li class="list-inline-item">
-                <form action="/pets/{{_id}}/like" method="post">
-                  <button class="btn btn-primary ms-1">
-                    Favourite
-                  </button>
-                </form>
-              </li>
-              <li class="list-inline-item">
-                <form action="/pets/animalall" method="GET">
-                  <button class="btn btn-secondary ms-1">
-                    Back to Animals list
-                  </button>
-                </form>
-              </li>
-            {{/if}}
+            {{! if user in session }}
+            {{!-- {{else}} --}}
+            <li class="list-inline-item">
+              <form action="/pets/{{_id}}/like" method="post">
+                <button class="btn btn-primary ms-1">
+                  Favourite
+                </button>
+              </form>
+            </li>
+            <li class="list-inline-item">
+              <form action="/pets/animalall" method="GET">
+                <button class="btn btn-secondary ms-1">
+                  Back to Animals list
+                </button>
+              </form>
+            </li>
+            {{!-- {{/if}} --}}
           </ul>
         </div>
 
