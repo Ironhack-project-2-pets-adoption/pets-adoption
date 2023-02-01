@@ -4,9 +4,9 @@ const router = require("express").Router();
 const { isLoggedIn, isLoggedOut,isAdmin } = require("../middleware/route-guard.js");
 const User = require("../models/User.model");
 const Pets = require("../models/Pet.model");
-const { findById } = require("../models/Pet.model");
 
-const likedAnimals = [];
+
+
 
 //Dotation Form:
 router.get("/donationform", (req, res) => {
@@ -81,8 +81,25 @@ router.get("/pets/:petsId/likeButton", isLoggedIn, (req, res) => {
 
 //favourited animals page
 router.get("/pets/favouritedAnimals", isLoggedIn, (req, res) => {
-  res.render("pets/favouritedAnimals");
+  console.log("trying to pass the favouriteAnimal")
+ let result = User.favouriteAnimal
+  res.render("pets/favouritedAnimals",result);
 });
+ 
+
+
+// router.get("/pets/animalall", (req, res) => {
+//   Pets.find()
+//     .populate("user_id")
+//     .then((result) => {
+//       res.render("pets/animalall", { result });
+//     })
+//     .catch((error) => {
+//       console.log("there is an error", error);
+//     });
+// });
+
+
 
 //router for the CREATE one animal GET =>
 router.get("/pets/animalCreate", isLoggedIn, (req, res) => {
