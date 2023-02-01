@@ -65,7 +65,7 @@ router.get("/pets/animalall", (req, res) => {
 });
 
 //router to add an animal to the favourited list
-router.post("/pets/:petsId/likeButton", isLoggedIn, (req, res) => {
+router.get("/pets/:petsId/likeButton", isLoggedIn, (req, res) => {
   let likedPet = req.params.petsId;
   const { favouriteAnimal } = req.body;
   User.findByIdAndUpdate(req.session.currentUser._id, {$addToSet:{ favouriteAnimal: likedPet }})
