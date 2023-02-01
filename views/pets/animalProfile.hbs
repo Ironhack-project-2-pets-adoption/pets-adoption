@@ -37,7 +37,7 @@
 
             {{! if admin in session }}
             {{!-- {{#if adminInSession}} --}}
-
+{{#if userInSession.isAdmin}}
             <li class="list-inline-item">
               <form action="/pets/{{_id}}/edit" method="get">
                 <button class="btn btn-success ms-1">
@@ -56,7 +56,7 @@
 
             {{! if user in session }}
             {{!-- {{else}} --}}
-
+{{else}}
             
             <li class="list-inline-item">
               <form action="/pets/{{_id}}/likeButton" method="post">
@@ -73,6 +73,7 @@
                 </button>
               </form>
             </li>
+            {{/if}}
             {{!-- {{/if}} --}}
           </ul>
         </div>
