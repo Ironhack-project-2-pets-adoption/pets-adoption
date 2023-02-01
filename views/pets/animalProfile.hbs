@@ -53,6 +53,21 @@
                 </button>
               </form>
             </li>
+            <li class="list-inline-item">
+              <form action="/pets/{{_id}}/likeButton" method="post">
+                <button class="btn btn-primary ms-1">
+                  Favourite
+                </button>
+              </form>
+            </li>
+           
+            <li class="list-inline-item">
+              <form action="/pets/animalall" method="GET">
+                <button class="btn btn-secondary ms-1">
+                  Back to Animals list
+                </button>
+              </form>
+            </li>
 
             {{! if user in session }}
             {{!-- {{else}} --}}
