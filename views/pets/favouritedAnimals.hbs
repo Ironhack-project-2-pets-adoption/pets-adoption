@@ -15,7 +15,7 @@
 
     {{!Favourited animals }}
     <div class="row">
-      {{#each result}}
+      {{#each this}}
 
         <div
           class="card p-3 m-2 d-flex justify-content-center align-items-center"
@@ -25,9 +25,9 @@
             class="img-fluid rounded mb-3"
             style=" width: 400px; 
                   height: 250px;"
-            src={{this.animalImage}}
+            src={{animalImage}}
           />
-          <h5>{{this.animalName}}</h5>
+          <h5>{{animalName}}</h5>
           <form action="/pets/animalProfile/{{_id}}" method="get">
             <button class="btn btn-outline-secondary ms-3">
               Check animal profile</button>

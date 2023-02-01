@@ -72,6 +72,7 @@ router.get("/pets/:petsId/likeButton", isLoggedIn, (req, res) => {
     .then(() => {
 
       res.redirect('/pets/animalAll')
+      console.log('TESTEST==>',likedPet)
 
     })
     .catch((error) => {
@@ -81,9 +82,10 @@ router.get("/pets/:petsId/likeButton", isLoggedIn, (req, res) => {
 
 //favourited animals page
 router.get("/pets/favouritedAnimals", isLoggedIn, (req, res) => {
+
+
   console.log("trying to pass the favouriteAnimal")
- let result = User.favouriteAnimal
-  res.render("pets/favouritedAnimals",result);
+  res.render("pets/favouritedAnimals");
 });
  
 
