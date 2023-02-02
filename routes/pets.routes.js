@@ -54,17 +54,6 @@ router.get("/pets/animalall", (req, res) => {
     });
 });
 
-//animal profile page
-router.get("/pets/animalprofile/:id", (req, res) => {
-  Pets.findById(req.params.id)
-    .then((result) => {
-      res.render("pets/animalProfile", result);
-    })
-    .catch((error) => {
-      console.log("error", error);
-    });
-});
-
 //redirect from animal profile page to the list of animals
 router.get("/pets/animalall", (req, res) => {
   res.render("pets/animalall");
@@ -103,35 +92,24 @@ router.get("/pets/favouritedAnimals", isLoggedIn, (req, res) => {
 });
 
 //router for the CREATE one animal GET =>
-router.get("/pets/animalCreate", isLoggedIn, isAdmin, (req, res) => {
+router.get("/pets/animalCreate", isLoggedIn,isAdmin, (req, res) => {
   // User.find()
   //   .then((result) => {
   //     console.log("THIS IS THE GET ROUTE TO ADD AN ANIMAL==>",result)
   //     res.render("pets/animalCreate",result);
-  res.render("pets/animalCreate");
-});
+  res.render('pets/animalCreate')
+  })
 
-router.post("/pets/animalCreate", (req, res) => {
-  const {
-    animalAge,
-    animalGender,
-    animalName,
-    animalType,
-    animalSize,
-    animalImage,
-  } = req.body;
-  console.log("THIS IS TRAVELING IN THE REQ.BODY", req.body);
+router.post('/pets/animalCreate', (req, res) => {
+  
+  const { animalAge, animalGender, animalName, animalType, animalSize, animalImage } = req.body
+  console.log('THIS IS TRAVELING IN THE REQ.BODY', req.body)
+  
+  Pets.create({ animalAge: animalAge, animalGender: animalGender, animalName: animalName, animalType: animalType, animalSize: animalSize, animalImage: animalImage })
+  res.redirect('/pets/animalAll')
+})
 
-  Pets.create({
-    animalAge: animalAge,
-    animalGender: animalGender,
-    animalName: animalName,
-    animalType: animalType,
-    animalSize: animalSize,
-    animalImage: animalImage,
-  });
-  res.redirect("/pets/animalAll");
-});
+
 
 //Animal profile one profile ===> this is the route for searching for one animal.
 //The result of the search should be posted on the following page: "/pets/animalProfileResult.hbs"
@@ -195,4 +173,14 @@ router.post("/pets/:petsId/edit", (req, res, next) => {
     });
 });
 
+//animal profile page
+router.get("/pets/animalprofile/:id", (req, res) => {
+  Pets.findById(req.params.id)
+    .then((result) => {
+      res.render("pets/animalProfile", result);
+    })
+    .catch((error) => {
+      console.log("error", error);
+    });
+});
 module.exports = router;
