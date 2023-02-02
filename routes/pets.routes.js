@@ -101,10 +101,24 @@ router.get("/pets/favouritedAnimals", isLoggedIn, (req, res) => {
  
 
 //router for the CREATE one animal GET =>
-router.get("/pets/animalCreate", isLoggedIn, (req, res) => {
+router.get("/pets/animalCreate", isLoggedIn,isAdmin, (req, res) => {
+  // User.find()
+  //   .then((result) => {
+  //     console.log("THIS IS THE GET ROUTE TO ADD AN ANIMAL==>",result)
+  //     res.render("pets/animalCreate",result);
+  res.render('pets/animalCreate')
+  })
+
+router.post('/pets/animalCreate', (req, res) => {
   
-  res.render("pets/animalCreate");
-});
+  const { animalAge, animalGender, animalName, animalType, animalSize, animalImage } = req.body
+  console.log('THIS IS TRAVELING IN THE REQ.BODY', req.body)
+  
+  Pets.create({ animalAge: animalAge, animalGender: animalGender, animalName: animalName, animalType: animalType, animalSize: animalSize, animalImage: animalImage })
+  res.redirect('/pets/animalAll')
+})
+
+
 
 //Animal profile one profile ===> this is the route for searching for one animal.
 //The result of the search should be posted on the following page: "/pets/animalProfileResult.hbs"
