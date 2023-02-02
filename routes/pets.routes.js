@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 const router = require("express").Router();
 
-const { isLoggedIn, isLoggedOut,isAdmin } = require("../middleware/route-guard.js");
+const {
+  isLoggedIn,
+  isLoggedOut,
+  isAdmin,
+} = require("../middleware/route-guard.js");
 const User = require("../models/User.model");
 const Pets = require("../models/Pet.model");
-
-
-
 
 //Dotation Form:
 router.get("/donationform", (req, res) => {
@@ -19,9 +20,9 @@ router.get("/contactform", (req, res) => {
 });
 
 //contact confirmation form!
-router.get('/contactFormConfirmation', (req, res) => {
-  res.render('contactFormConfirmation')
-})
+router.get("/contactFormConfirmation", (req, res) => {
+  res.render("contactFormConfirmation");
+});
 
 //mySpace route:
 router.get("/mySpace", (req, res) => {
@@ -53,8 +54,6 @@ router.get("/pets/animalall", (req, res) => {
     });
 });
 
-
-
 //redirect from animal profile page to the list of animals
 router.get("/pets/animalall", (req, res) => {
   res.render("pets/animalall");
@@ -64,37 +63,33 @@ router.get("/pets/animalall", (req, res) => {
 router.get("/pets/:petsId/likeButton", isLoggedIn, (req, res) => {
   let likedPet = req.params.petsId;
   const { favouriteAnimal } = req.body;
-  User.findByIdAndUpdate(req.session.currentUser._id, {$addToSet:{ favouriteAnimal: likedPet }})
+  User.findByIdAndUpdate(req.session.currentUser._id, {
+    $addToSet: { favouriteAnimal: likedPet },
+  })
     .then(() => {
-
-      res.redirect('/pets/animalAll')
-      console.log('TESTEST==>',likedPet)
-
+      res.redirect("/pets/animalAll");
+      console.log("TESTEST==>", likedPet);
     })
     .catch((error) => {
-    console.log("there is an error ===>", error)
-  })
+      console.log("there is an error ===>", error);
+    });
 });
 
 //favourited animals page
 router.get("/pets/favouritedAnimals", isLoggedIn, (req, res) => {
-//req.session.currentUser <== saved
-  let currentUser = req.session.currentUser
+  //req.session.currentUser <== saved
+  let currentUser = req.session.currentUser;
 
   User.findById(currentUser._id)
     .populate("favouriteAnimal")
     .then((result) => {
-      console.log("trying to pass the favouriteAnimal",result)
-      res.render("pets/favouritedAnimals", result)
-  
+      console.log("trying to pass the favouriteAnimal", result);
+      res.render("pets/favouritedAnimals", result);
     })
     .catch((error) => {
-    console.log('errrorr',error)
-  })
-  
- 
+      console.log("error", error);
+    });
 });
- 
 
 //router for the CREATE one animal GET =>
 // router.get("/pets/animalCreate", isAdmin, (req, res) => {
@@ -154,14 +149,14 @@ router.get("/pets/:petsId", (req, res) => {
 });
 
 //router for the DELETE one animal button =>
-router.post("/pets/:petsId/delete",isLoggedIn,isAdmin, (req, res) => {
+router.post("/pets/:petsId/delete", isLoggedIn, isAdmin, (req, res) => {
   const { petsId } = req.params;
 
   Pets.findByIdAndDelete(petsId)
     .then(() => res.redirect("/pets/animalAll"))
     .catch((error) => {
-      console.log("There is an error deleting a pet ==>",error)
-    })
+      console.log("There is an error deleting a pet ==>", error);
+    });
 });
 
 // GET route to display the form to update a specific animal
