@@ -10,6 +10,7 @@
     </div>
 
     {{!One animal profile }}
+     <form action="/pets/animalCreate" method="POST">
     <div class="row bg-light">
 
       {{! img col }}
@@ -131,11 +132,11 @@
             </li>
           </ul>
 
-          <form action="/pets/{{_id}}/create" method="POST">
-            <button class="btn btn-success mb-5">
-              Create profile
+         
+            <button type="submit" "btn btn-success mb-5">
+              Add a pet
             </button>
-          </form>
+         
 
         </div>
 
@@ -144,4 +145,5 @@
     </div>
 
   </div>
+   </form>
 </div>
