@@ -44,7 +44,7 @@ router.post("/auth/createuser", (req, res, next) => {
       });
     })
     .then(() => {
-      res.redirect("/pets/loggedUser");
+      res.redirect("/");
     })
     .catch((error) => {
       //Check if any of our mongoose validators are not being met
@@ -68,11 +68,9 @@ router.get("/auth/login", isLoggedOut, (req, res) => {
 
 //middleware function
 
-router.get("/user", isLoggedIn, (req, res) => {
-  res.render("pets/loggedUser",  req.session.currentUser );
-});
-
-
+// router.get("/user", isLoggedIn, (req, res) => {
+//   res.render("pets/loggedUser", req.session.currentUser);
+// });
 
 //this is the post route to login! :)
 
@@ -95,9 +93,9 @@ router.post("/auth/login", (req, res) => {
           errorMessage: "user not found! There is no account with this email!",
         });
       } else if (bcrypt.compareSync(password, user.password)) {
-        console.log(`password confirmed`)
+        console.log(`password confirmed`);
         req.session.currentUser = user.toObject();
-        delete req.session.currentUser.password
+        delete req.session.currentUser.password;
         res.redirect("/");
       } else {
         res.render("auth/login", { errorMessage: "Wrong information!" });
