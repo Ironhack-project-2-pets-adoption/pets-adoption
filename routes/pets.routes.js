@@ -100,22 +100,9 @@ router.get("/pets/favouritedAnimals", isLoggedIn, (req, res) => {
 });
  
 
-
-// router.get("/pets/animalall", (req, res) => {
-//   Pets.find()
-//     .populate("user_id")
-//     .then((result) => {
-//       res.render("pets/animalall", { result });
-//     })
-//     .catch((error) => {
-//       console.log("there is an error", error);
-//     });
-// });
-
-
-
 //router for the CREATE one animal GET =>
 router.get("/pets/animalCreate", isLoggedIn, (req, res) => {
+  
   res.render("pets/animalCreate");
 });
 
