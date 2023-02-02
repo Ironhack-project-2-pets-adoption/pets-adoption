@@ -18,6 +18,11 @@ router.get("/contactform", (req, res) => {
   res.render("contactForm");
 });
 
+//contact confirmation form!
+router.get('/contactFormConfirmation', (req, res) => {
+  res.render('contactFormConfirmation')
+})
+
 //mySpace route:
 router.get("/mySpace", (req, res) => {
   res.render("mySpace");
