@@ -1,7 +1,5 @@
 {{! this page renders a one animal profile }}
-
 <div class="container d-flex justify-content-center align-items-center">
-
   <div class="container">
     {{! Page Title }}
     <div class="row">
@@ -25,6 +23,7 @@
         />
 
       </div>
+
       {{! description col }}
       <div class="col card bg-light">
 
@@ -114,6 +113,7 @@
               />
             </li>
           </ul>
+          
           {{! Animal Description }}
           <ul class="list-inline">
             <li class="list-inline-item mb-3" style="width: 150px">
@@ -132,9 +132,10 @@
             </li>
           </ul>
 
-         
-            <button type="submit" "btn btn-success mb-5">
-              Add a pet
+          {{! button create }}
+          <form action="/pets/{{_id}}/create" method="POST">
+            <button class="btn btn-success mb-5">
+              Create profile
             </button>
          
 

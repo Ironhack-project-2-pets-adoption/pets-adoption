@@ -106,25 +106,38 @@ router.get("/pets/favouritedAnimals", isLoggedIn, (req, res) => {
 // })
 
 router.get("/pets/animalCreate", isAdmin, (req, res) => {
-  res.render('pets/animalCreate')
-})
+  res.render("pets/animalCreate");
+});
 
-  //post route for creating an animal
-router.post('/pets/animalCreate', (req, res) => {
-  
-  const { animalAge, animalGender, animalName, animalType, animalSize, animalImage,user_id } = req.body
+//post route for creating an animal
+router.post("/pets/animalCreate", (req, res) => {
+  const {
+    animalAge,
+    animalGender,
+    animalName,
+    animalType,
+    animalSize,
+    animalImage,
+    user_id,
+  } = req.body;
 
-  Pets.create({ user_id:user_id,animalAge: animalAge, animalGender: animalGender, animalName: animalName, animalType: animalType, animalSize: animalSize, animalImage: animalImage })
-    .then(() => {
-      res.redirect('/pets/animalAll')
-  console.log('THIS IS TRAVELING IN THE REQ.BODY', req.body)
+  Pets.create({
+    user_id: user_id,
+    animalAge: animalAge,
+    animalGender: animalGender,
+    animalName: animalName,
+    animalType: animalType,
+    animalSize: animalSize,
+    animalImage: animalImage,
   })
+    .then(() => {
+      res.redirect("/pets/animalAll");
+      console.log("THIS IS TRAVELING IN THE REQ.BODY", req.body);
+    })
     .catch((error) => {
-  console.log('there is ANOTHER ERROR', error)
-})
-})
-
-
+      console.log("there is ANOTHER ERROR", error);
+    });
+});
 
 //Animal profile one profile ===> this is the route for searching for one animal.
 //The result of the search should be posted on the following page: "/pets/animalProfileResult.hbs"
@@ -180,7 +193,7 @@ router.post("/pets/:petsId/edit", (req, res, next) => {
     .then(() => {
       console.log("THE PET IS EDITED");
       // res.render('pets/animalEdit',result)
-      res.redirect(`/pets/animalAll`);
+      res.redirect("/pets/animalall");
     })
 
     .catch((error) => {

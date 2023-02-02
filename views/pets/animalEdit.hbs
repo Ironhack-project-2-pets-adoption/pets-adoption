@@ -1,40 +1,153 @@
 {{! views/pets/animalEdit.hbs }}
-<div
-  class="container h-100 d-flex justify-content-center align-items-start mt-5"
->
-  <div class="row">
-    <div class="col">
-      <h2 class="mb-3">Edit the animal profile: </h2>
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="container">
+    {{! Page Title }}
+    <div class="row">
+      <h1>Edit the animal profile: </h1>
+      <hr />
+    </div>
 
-      <form action="/pets/{{_id}}/edit" method="post">
+    {{!Edit one animal profile }}
+    <div class="row bg-light">
 
-        <label>
-          Name:
-          <input type="text" name="animalName" value="{{animalName}}" />
-        </label>
+      {{! img col }}
+      <div class="col">
+        <img
+          class="img-fluid rounded"
+          style=" width: 800px; 
+                  height: 450px;"
+          src={{animalImage}}
+        />
+        <div
+          class="card text-white p-2 align-items-center bg-secondary"
+          style="max-width: 800px"
+        >
+          <label class="form-label" for="customFile">
+            Cange animal picture here</label>
+          <input
+            type="file"
+            class="form-control"
+            id="customFile"
+            style="width: 400px;"
+          />
+        </div>
 
-        <label>
-          Type:
-          <input type="text" name="animalType" value="{{animalType}}" />
-        </label>
+      </div>
 
-        <label>
-          Gender:
-          <input type="text" name="animalGender" value="{{animalGender}}" />
-        </label>
+      {{! description col }}
+      <div class="col card bg-light">
 
-        <label>
-          Age:
-          <input type="number" name="animalAge" value="{{animalAge}}" />
-        </label>
+        {{!animal parameters description row}}
+        <div class="row mt-5 ms-3">
+          <form action="/pets/{{_id}}/edit" method="post">
+            {{! Animal Name }}
+            <ul class="list-inline">
+              <li class="list-inline-item" style="width: 150px">
+                <label>Animal Name:</label>
+              </li>
+              <li class="list-inline-item">
+                <input
+                  type="text"
+                  class="form-control border border-secondary"
+                  name="animalName"
+                  value="{{animalName}}"
+                  style="width: 300px"
+                />
+              </li>
+            </ul>
+            {{!  Animal Type }}
+            <ul class="list-inline">
+              <li class="list-inline-item" style="width: 150px">
+                <label>
+                  Animal Type:
+                </label>
+              </li>
+              <li class="list-inline-item">
+                <input
+                  type="text"
+                  class="form-control border border-secondary"
+                  name="animalType"
+                  value="{{animalType}}"
+                  style="width: 300px"
+                />
+              </li>
+            </ul>
+            {{! Animal Gender}}
+            <ul class="list-inline">
+              <li class="list-inline-item" style="width: 150px">
+                <label> Gender:</label>
+              </li>
+              <li class="list-inline-item">
+                <input
+                  type="text"
+                  class="form-control border border-secondary"
+                  name="animalGender"
+                  value="{{animalGender}}"
+                  style="width: 300px"
+                />
+              </li>
+            </ul>
+            {{! Animal Age }}
+            <ul class="list-inline">
+              <li class="list-inline-item" style="width: 150px">
+                <label>
+                  Animal Age:
+                </label>
+              </li>
+              <li class="list-inline-item">
+                <input
+                  type="number"
+                  class="form-control border border-secondary"
+                  name="animalAge"
+                  value="{{animalAge}}"
+                  style="width: 300px"
+                />
+              </li>
+            </ul>
+            {{! Animal Size  }}
+            <ul class="list-inline">
+              <li class="list-inline-item" style="width: 150px">
+                <label>
+                  Animal Size:
+                </label>
+              </li>
+              <li class="list-inline-item">
+                <input
+                  type="text"
+                  class="form-control border border-secondary"
+                  name="animalSize"
+                  value="{{animalSize}}"
+                  style="width: 300px"
+                /></li>
+            </ul>
+            {{! Animal Description }}
+            <ul class="list-inline">
+              <li class="list-inline-item mb-3" style="width: 150px">
+                <p><u>Description:</u></p>
+              </li>
+              <li class="list-inline-item">
+                <textarea
+                  type="text"
+                  class="form-control border border-secondary"
+                  id="description"
+                  placeholder=""
+                  name="description"
+                  style="width: 300px; "
+                ></textarea>
 
-        <label>
-          Size:
-          <input type="text" name="animalSize" value="{{animalSize}}" />
-        </label>
+              </li>
+            </ul>
 
-        <button type="submit">Save changes</button>
-      </form>
+            {{! button Save changes }}
+            <form action="/pets/{{_id}}/edit" method="POST">
+              <button class="btn btn-success mb-5" type="submit">Save changes</button>
+            </form>
+
+          </form>
+
+        </div>
+      </div>
+
     </div>
 
   </div>
