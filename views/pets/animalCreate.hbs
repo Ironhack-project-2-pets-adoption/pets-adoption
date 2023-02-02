@@ -8,7 +8,7 @@
     </div>
 
     {{!One animal profile }}
-
+<form action="/pets/animalCreate" method="POST">
     <div class="row bg-light">
 
       {{! img col }}
@@ -20,6 +20,7 @@
           class="form-control"
           id="customFile"
           style="width: 400px;"
+          name="animalImage"
         />
 
       </div>
@@ -29,7 +30,7 @@
 
         {{!animal parameters description row}}
         <div class="row mt-5 ms-3">
-          <form action="/pets/animalCreate" method="POST">
+          
             {{! Animal Name }}
             <ul class="list-inline">
               <li class="list-inline-item" style="width: 150px">
@@ -41,7 +42,7 @@
                   class="form-control border border-secondary"
                   id="name"
                   placeholder=""
-                  name="name"
+                  name="animalName"
                   style="width: 300px"
                 />
               </li>
@@ -58,7 +59,7 @@
                   class="form-control border border-secondary"
                   id="name"
                   placeholder=""
-                  name="name"
+                  name="animalType"
                   style="width: 300px"
                 />
               </li>
@@ -75,7 +76,7 @@
                   class="form-control border border-secondary"
                   id="name"
                   placeholder=""
-                  name="name"
+                  name="animalGender"
                   style="width: 300px"
                 />
               </li>
@@ -92,7 +93,7 @@
                   class="form-control border border-secondary"
                   id="name"
                   placeholder=""
-                  name="name"
+                  name="animalAge"
                   style="width: 300px"
                 />
               </li>
@@ -109,7 +110,7 @@
                   class="form-control border border-secondary"
                   id="name"
                   placeholder=""
-                  name="name"
+                  name="animalSize"
                   style="width: 300px"
                 />
               </li>
@@ -126,18 +127,18 @@
                   class="form-control border border-secondary"
                   id="description"
                   placeholder=""
-                  name="description"
+                  name="animalDescription"
                   style="width: 300px; "
                 ></textarea>
 
               </li>
             </ul>
-          </form>
+          
 
           {{! button create }}
-          <form action="/pets/:petsId/create" method="POST">
-            <button class="btn btn-success mb-5">
-              Create profile
+         
+            <button type="submit"  class="btn btn-success mb-5">
+              Add an animal
             </button>
           </form>
 
