@@ -82,10 +82,21 @@ router.get("/pets/:petsId/likeButton", isLoggedIn, (req, res) => {
 
 //favourited animals page
 router.get("/pets/favouritedAnimals", isLoggedIn, (req, res) => {
+//req.session.currentUser <== saved
+  let currentUser = req.session.currentUser
 
-
-  console.log("trying to pass the favouriteAnimal")
-  res.render("pets/favouritedAnimals");
+  User.findById(currentUser._id)
+    .populate("favouriteAnimal")
+    .then((result) => {
+      console.log("trying to pass the favouriteAnimal",result)
+      res.render("pets/favouritedAnimals", result)
+  
+    })
+    .catch((error) => {
+    console.log('errrorr',error)
+  })
+  
+ 
 });
  
 
