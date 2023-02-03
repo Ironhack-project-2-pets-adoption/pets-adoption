@@ -1,14 +1,55 @@
 <div class="container h-100 d-flex align-items-start mt-5">
+  <!-- content first row  -->
+  <div class="container">
+    <div class="row">
+      <h1 class="mb-3">
+        My Space
+        <hr />
+      </h1>
+    </div>
+    {{!animal parameters description row}}
 
-  <h1 class="mb-3">
-    My Space
-    <hr />
-  </h1>
+    <img src="/images/user icon.jpg" alt="" style="width: 200px" />
+    <ul class="list-inline ms-5">
+      <li class="list-inline-item" style="width: 200px">
+        <h4><u>User's information</u></h4>
+      </li>
+    </ul>
 
-  <form action="/pets/favouritedAnimals" method="get">
-    <button class="btn btn-primary ms-5" style="width: 400px">
-      My favourited animals
-    </button>
-  </form>
+    <ul class="list-inline ms-5">
+      <li class="list-inline-item" style="width: 150px">
+        <p><u>Username: </u></p>
+      </li>
+      <li class="list-inline-item">
+        <h6>{{userInSession.username}}</h6>
+      </li>
+    </ul>
 
+    <ul class="list-inline ms-5">
+      <li class="list-inline-item" style="width: 150px">
+        <p><u>IsAdmin Status:</u></p>
+      </li>
+      <li class="list-inline-item">
+        <h6>{{userInSession.isAdmin}}</h6>
+      </li>
+    </ul>
+
+    <ul class="list-inline ms-5">
+      <li class="list-inline-item" style="width: 150px">
+        <p><u>Email:</u></p>
+      </li>
+      <li class="list-inline-item">
+        <h6>{{userInSession.email}}</h6>
+      </li>
+    </ul>
+
+    <ul class="list-inline">
+      <form action="/pets/favouritedAnimals" method="get">
+        <button class="btn btn-primary ms-5" style="width: 400px">
+          My favourited animals
+        </button>
+      </form>
+    </ul>
+
+  </div>
 </div>
