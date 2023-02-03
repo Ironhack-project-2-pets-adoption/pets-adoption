@@ -139,7 +139,7 @@
             </ul>
 
             {{! button Save changes }}
-            <form action="/pets/{{_id}}/edit" method="POST">
+            <form action="/pets/{{_id}}/edit" enctype="multipart/form-data" method="POST">
               <button class="btn btn-success mb-5" type="submit">Save changes</button>
             </form>
 

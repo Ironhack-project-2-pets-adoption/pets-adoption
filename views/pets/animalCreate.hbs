@@ -1,4 +1,4 @@
-{{! this page renders a one animal profile }}
+{{! this page renders a form to create one animal profile }}
 <div class="container d-flex justify-content-center align-items-center">
   <div class="container">
     {{! Page Title }}
@@ -8,29 +8,29 @@
     </div>
 
     {{!One animal profile }}
-<form action="/pets/animalCreate" method="POST">
-    <div class="row bg-light">
+    <form
+      action="/pets/animalCreate"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <div class="row">
+        {{! img col }}
+        <div class="col card d-flex justify-content-center align-items-center">
+          <label class="form-label" for="animalImage">
+            Upload animal picture here</label>
+          <form><input
+              type="file"
+              id="animalImage"
+              style="width: 400px;"
+              name="animalImage"
+            /></form>
 
-      {{! img col }}
-      <div class="col card d-flex justify-content-center align-items-center">
-        <label class="form-label" for="customFile">
-          Upload animal picture here</label>
-        <input
-          type="file"
-          class="form-control"
-          id="customFile"
-          style="width: 400px;"
-          name="animalImage"
-        />
+        </div>
 
-      </div>
+        {{! description col }}
+        <div class="col card bg-light">
+          <div class="row mt-5 ms-3">
 
-      {{! description col }}
-      <div class="col card bg-light">
-
-        {{!animal parameters description row}}
-        <div class="row mt-5 ms-3">
-          
             {{! Animal Name }}
             <ul class="list-inline">
               <li class="list-inline-item" style="width: 150px">
@@ -40,7 +40,6 @@
                 <input
                   type="text"
                   class="form-control border border-secondary"
-                  id="name"
                   placeholder=""
                   name="animalName"
                   style="width: 300px"
@@ -57,7 +56,6 @@
                 <input
                   type="text"
                   class="form-control border border-secondary"
-                  id="name"
                   placeholder=""
                   name="animalType"
                   style="width: 300px"
@@ -74,7 +72,6 @@
                 <input
                   type="text"
                   class="form-control border border-secondary"
-                  id="name"
                   placeholder=""
                   name="animalGender"
                   style="width: 300px"
@@ -91,7 +88,6 @@
                 <input
                   type="text"
                   class="form-control border border-secondary"
-                  id="name"
                   placeholder=""
                   name="animalAge"
                   style="width: 300px"
@@ -108,7 +104,6 @@
                 <input
                   type="text"
                   class="form-control border border-secondary"
-                  id="name"
                   placeholder=""
                   name="animalSize"
                   style="width: 300px"
@@ -133,19 +128,17 @@
 
               </li>
             </ul>
-          
 
-          {{! button create }}
-         
-            <button type="submit"  class="btn btn-success mb-5">
+            {{! button create }}
+
+            <button type="submit" class="btn btn-success mb-5">
               Add an animal
             </button>
-          </form>
-
+          </div>
         </div>
-
       </div>
-    </div>
-  </div>
 
+    </form>
+
+  </div>
 </div>

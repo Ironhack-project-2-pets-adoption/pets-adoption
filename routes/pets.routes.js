@@ -8,6 +8,7 @@ const {
 } = require("../middleware/route-guard.js");
 const User = require("../models/User.model");
 const Pets = require("../models/Pet.model");
+const fileUploader = require("../config/cloudinary.config");
 
 //Dotation Form:
 router.get("/donationform", (req, res) => {
@@ -105,34 +106,38 @@ router.get("/pets/animalCreate", isAdmin, (req, res) => {
 });
 
 //post route for creating an animal
-router.post("/pets/animalCreate", (req, res) => {
-  const {
-    animalAge,
-    animalGender,
-    animalName,
-    animalType,
-    animalSize,
-    animalImage,
-    user_id,
-  } = req.body;
+router.post(
+  "/pets/animalCreate",
+  fileUploader.single("animalImage"),
+  (req, res) => {
+    const {
+      animalAge,
+      animalGender,
+      animalName,
+      animalType,
+      animalSize,
+      animalImage,
+      user_id,
+    } = req.body;
 
-  Pets.create({
-    user_id: user_id,
-    animalAge: animalAge,
-    animalGender: animalGender,
-    animalName: animalName,
-    animalType: animalType,
-    animalSize: animalSize,
-    animalImage: animalImage,
-  })
-    .then(() => {
-      res.redirect("/pets/animalAll");
-      console.log("THIS IS TRAVELING IN THE REQ.BODY", req.body);
+    Pets.create({
+      user_id: user_id,
+      animalAge: animalAge,
+      animalGender: animalGender,
+      animalName: animalName,
+      animalType: animalType,
+      animalSize: animalSize,
+      animalImage: animalImage,
     })
-    .catch((error) => {
-      console.log("there is ANOTHER ERROR", error);
-    });
-});
+      .then(() => {
+        res.redirect("/pets/animalAll");
+        console.log("THIS IS TRAVELING IN THE REQ.BODY", req.body);
+      })
+      .catch((error) => {
+        console.log(`Error while creating a new animal profile: ${error}`);
+      });
+  }
+);
 
 //Animal profile one profile ===> this is the route for searching for one animal.
 //The result of the search should be posted on the following page: "/pets/animalProfileResult.hbs"
