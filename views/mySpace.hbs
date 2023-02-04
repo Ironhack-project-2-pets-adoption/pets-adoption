@@ -42,14 +42,23 @@
         <h6>{{userInSession.email}}</h6>
       </li>
     </ul>
+    {{#if userInSession.isAdmin}}
 
-    <ul class="list-inline">
-      <form action="/pets/favouritedAnimals" method="get">
-        <button class="btn btn-primary ms-5" style="width: 400px">
-          My favourited animals
-        </button>
-      </form>
-    </ul>
-
+      <ul class="list-inline">
+        <form action="" method="get">
+          <button class="btn btn-primary ms-5" style="width: 400px">
+            Check visitors messages
+          </button>
+        </form>
+      </ul>
+    {{else}}
+      <ul class="list-inline">
+        <form action="/pets/favouritedAnimals" method="get">
+          <button class="btn btn-primary ms-5" style="width: 400px">
+            My favourited animals
+          </button>
+        </form>
+      </ul>
+    {{/if}}
   </div>
 </div>

@@ -127,10 +127,11 @@ router.post(
       animalName: animalName,
       animalType: animalType,
       animalSize: animalSize,
-      animalImage: animalImage,
+      animalImage: req.file.path,
     })
       .then(() => {
         res.redirect("/pets/animalAll");
+        console.log(req.file);
         console.log("THIS IS TRAVELING IN THE REQ.BODY", req.body);
       })
       .catch((error) => {
