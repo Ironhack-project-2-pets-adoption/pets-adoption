@@ -55,10 +55,10 @@ router.get("/pets/animalall", (req, res) => {
     });
 });
 
-//redirect from animal profile page to the list of animals
+/* //redirect from animal profile page to the list of animals
 router.get("/pets/animalall", (req, res) => {
   res.render("pets/animalall");
-});
+}); */
 
 //router to add an animal to the favourited list
 router.get("/pets/:petsId/likeButton", isLoggedIn, (req, res) => {

@@ -3,7 +3,8 @@ const user = require("../models/User.model");
 const Pet = require("../models/Pet.model");
 
 const MONGO_URI =
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/pets-adoption";
+  process.env.MONGODB_URI ||
+  "mongodb+srv://natalia:123@cluster0.9jdceav.mongodb.net/pets-adoption?retryWrites=true&w=majority";
 
 const pets = [
   {
