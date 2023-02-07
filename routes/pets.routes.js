@@ -178,29 +178,53 @@ router.get("/pets/:petsId/edit", (req, res, next) => {
 });
 
 // POST route to actually make updates on a specific animal profile
-router.post("/pets/:petsId/edit", (req, res, next) => {
-  // const { petsId } = req.params;
-  const { animalName, animalType, animalGender, animalAge, animalSize } =
-    req.body;
+router.post(
+  "/pets/:petsId/edit",
+  fileUploader.single("animalImage"),
+  (req, res) => {
+    // const { petsId } = req.params;
+    const {
+      animalName,
+      animalType,
+      animalGender,
+      animalAge,
+      animalSize,
+      animalImage,
+      user_id,
+    } = req.body;
 
-  Pets.findByIdAndUpdate(req.params.petsId, {
-    animalName: animalName,
-    animalType: animalType,
-    animalGender: animalGender,
-    animalAge: animalAge,
-    animalSize: animalSize,
-  })
+    let animalImageNew;
+    if (req.file) {
+      animalImageNew = req.file.path;
+    } else {
+      animalImageNew = animalImage;
+    }
 
-    .then(() => {
-      console.log("THE PET IS EDITED");
-      // res.render('pets/animalEdit',result)
-      res.redirect("/pets/animalall");
-    })
+    Pets.findByIdAndUpdate(
+      req.params.petsId,
+      {
+        user_id: user_id,
+        animalName: animalName,
+        animalType: animalType,
+        animalGender: animalGender,
+        animalAge: animalAge,
+        animalSize: animalSize,
+        animalImage: animalImageNew,
+      },
+      { new: true }
+    )
 
-    .catch((error) => {
-      console.log("There is an errorr", error);
-    });
-});
+      .then(() => {
+        console.log("THE PET IS EDITED");
+        // res.render('pets/animalEdit',result)
+        res.redirect("/pets/animalall");
+      })
+
+      .catch((error) => {
+        console.log("There is an errorr", error);
+      });
+  }
+);
 
 //animal profile page
 router.get("/pets/animalprofile/:id", (req, res) => {
